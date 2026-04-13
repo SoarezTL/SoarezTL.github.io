@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Osorio Soarez | Portfolio</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--cyan:#00d4ff;--cyan2:#00b8d9;--dark:#0a0e1a;--dark2:#0f1525;--dark3:#141c30;--card:#111827;--text:#e2e8f0;--muted:#94a3b8;}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--text);font-family:'Segoe UI',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:999;background:rgba(10,14,26,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,212,255,0.1);padding:1rem 5%;}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{font-size:1.4rem;font-weight:700;color:#fff;}
+.nav-logo span{color:var(--cyan);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;letter-spacing:.05em;transition:color .3s;}
+.nav-links a:hover{color:var(--cyan);}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding:0 5%;background:radial-gradient(ellipse at 70% 50%,rgba(0,212,255,0.07) 0%,transparent 60%),var(--dark);}
+.hero-content{flex:1;max-width:580px;}
+.hero-sub{font-size:1.1rem;color:var(--muted);margin-bottom:.5rem;}
+.hero-name{font-size:3.2rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:.5rem;}
+.hero-role{font-size:1.3rem;margin-bottom:1.2rem;}
+.hero-role span{color:var(--cyan);font-weight:600;}
+.hero-bio{color:var(--muted);line-height:1.7;margin-bottom:1.8rem;font-size:.95rem;}
+.hero-btns{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
+.btn-primary{background:var(--cyan);color:#0a0e1a;padding:.7rem 1.8rem;border-radius:30px;font-weight:700;text-decoration:none;font-size:.9rem;transition:all .3s;}
+.btn-primary:hover{background:var(--cyan2);transform:translateY(-2px);}
+.btn-secondary{border:1px solid var(--cyan);color:var(--cyan);padding:.7rem 1.8rem;border-radius:30px;font-weight:600;text-decoration:none;font-size:.9rem;transition:all .3s;}
+.btn-secondary:hover{background:rgba(0,212,255,0.1);}
+.social-icons{display:flex;gap:.8rem;margin-top:1.5rem;}
+.social-icons a{width:40px;height:40px;border:1px solid rgba(0,212,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:.8rem;text-decoration:none;transition:all .3s;}
+.social-icons a:hover{background:var(--cyan);color:#0a0e1a;}
+.hero-image{flex:1;display:flex;justify-content:center;align-items:center;}
+.hex-frame{position:relative;width:280px;height:280px;}
+.hex-bg{position:absolute;width:100%;height:100%;background:linear-gradient(135deg,var(--cyan),#0077ff);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);opacity:.15;animation:pulse 3s ease-in-out infinite;}
+.hex-border{position:absolute;width:100%;height:100%;border:2px solid var(--cyan);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);opacity:.4;}
+.hex-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:230px;height:230px;background:linear-gradient(135deg,#1a2a4a,#0f1525);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-size:5rem;overflow:hidden;}
+.hex-inner img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+@keyframes pulse{0%,100%{opacity:.15;}50%{opacity:.25;}}
+
+/* SECTIONS */
+section{padding:5rem 5%;}
+.section-title{text-align:center;font-size:2rem;font-weight:700;color:#fff;margin-bottom:.5rem;}
+.section-title span{color:var(--cyan);}
+.section-line{width:60px;height:3px;background:var(--cyan);margin:.5rem auto 3rem;}
+
+/* ABOUT */
+#about{background:var(--dark2);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px;margin:0 auto;}
+.about-text p{color:var(--muted);line-height:1.8;margin-bottom:1rem;font-size:.95rem;}
+.about-info{display:flex;flex-direction:column;gap:.8rem;}
+.info-item{display:flex;gap:.8rem;align-items:flex-start;background:var(--card);padding:.8rem 1rem;border-radius:8px;border-left:3px solid var(--cyan);}
+.info-label{color:var(--cyan);font-size:.8rem;font-weight:600;min-width:70px;}
+.info-val{color:var(--text);font-size:.9rem;}
+
+/* EDUCATION */
+#education{background:var(--dark);}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1000px;margin:0 auto;}
+.edu-card{background:var(--card);border:1px solid rgba(0,212,255,0.15);border-radius:12px;padding:1.5rem;position:relative;overflow:hidden;transition:border-color .3s;}
+.edu-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--cyan);}
+.edu-card:hover{border-color:rgba(0,212,255,0.4);}
+.edu-badge{display:inline-block;background:rgba(0,212,255,0.1);color:var(--cyan);font-size:.75rem;padding:.2rem .7rem;border-radius:20px;margin-bottom:.8rem;border:1px solid rgba(0,212,255,0.2);}
+.edu-degree{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:.3rem;}
+.edu-school{color:var(--cyan);font-size:.9rem;margin-bottom:.4rem;}
+.edu-period{color:var(--muted);font-size:.8rem;margin-bottom:.8rem;}
+.edu-detail{color:var(--muted);font-size:.85rem;line-height:1.6;}
+.current-badge{background:rgba(0,212,255,0.15);color:var(--cyan);font-size:.7rem;padding:.2rem .6rem;border-radius:10px;border:1px solid var(--cyan);display:inline-block;margin-left:.5rem;vertical-align:middle;}
+
+/* SKILLS */
+#skills{background:var(--dark2);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem;max-width:1000px;margin:0 auto;}
+.skill-category{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:12px;padding:1.5rem;}
+.skill-cat-title{color:var(--cyan);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.skill-tag{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);color:var(--text);padding:.3rem .8rem;border-radius:20px;font-size:.8rem;transition:all .3s;}
+.skill-tag:hover{background:rgba(0,212,255,0.15);border-color:var(--cyan);}
+
+/* PROJECTS */
+#projects{background:var(--dark);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1000px;margin:0 auto;}
+.proj-card{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:12px;padding:1.5rem;transition:all .3s;}
+.proj-card:hover{transform:translateY(-4px);border-color:rgba(0,212,255,0.35);}
+.proj-icon{width:48px;height:48px;background:rgba(0,212,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;}
+.proj-period{color:var(--cyan);font-size:.75rem;margin-bottom:.5rem;}
+.proj-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem;line-height:1.3;}
+.proj-desc{color:var(--muted);font-size:.85rem;line-height:1.6;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+.proj-tag{background:rgba(255,255,255,0.05);color:var(--muted);padding:.2rem .6rem;border-radius:4px;font-size:.75rem;}
+
+/* EXPERIENCE */
+#experience{background:var(--dark2);}
+.timeline{max-width:800px;margin:0 auto;position:relative;}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--cyan),transparent);}
+.timeline-item{display:flex;gap:1.5rem;margin-bottom:2rem;padding-left:50px;position:relative;}
+.timeline-dot{position:absolute;left:12px;top:4px;width:18px;height:18px;background:var(--cyan);border-radius:50%;border:3px solid var(--dark2);}
+.timeline-content{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:10px;padding:1.2rem;flex:1;}
+.tl-period{color:var(--cyan);font-size:.75rem;margin-bottom:.3rem;}
+.tl-role{font-weight:700;color:#fff;font-size:.95rem;}
+.tl-org{color:var(--muted);font-size:.85rem;margin-bottom:.5rem;}
+.tl-desc{color:var(--muted);font-size:.82rem;line-height:1.6;}
+
+/* AWARDS */
+#awards{background:var(--dark);}
+.awards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;max-width:1000px;margin:0 auto;}
+.award-card{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:10px;padding:1.2rem;text-align:center;transition:all .3s;}
+.award-card:hover{border-color:rgba(0,212,255,0.35);transform:translateY(-3px);}
+.award-icon{font-size:2rem;margin-bottom:.7rem;}
+.award-year{color:var(--cyan);font-size:.75rem;margin-bottom:.3rem;}
+.award-title{color:#fff;font-size:.9rem;font-weight:700;margin-bottom:.3rem;line-height:1.3;}
+.award-org{color:var(--muted);font-size:.8rem;}
+
+/* LANGUAGES */
+#languages{background:var(--dark2);}
+.lang-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.lang-card{background:var(--card);border:1px solid rgba(0,212,255,0.1);border-radius:10px;padding:1.2rem;text-align:center;}
+.lang-name{color:#fff;font-weight:700;font-size:.95rem;margin-bottom:.4rem;}
+.lang-level{color:var(--cyan);font-size:.8rem;margin-bottom:.8rem;}
+.lang-bar{height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+.lang-fill{height:100%;background:linear-gradient(to right,var(--cyan),#0077ff);border-radius:2px;}
+
+/* CONTACT */
+#contact{background:var(--dark);text-align:center;}
+.contact-cards{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.contact-card{background:var(--card);border:1px solid rgba(0,212,255,0.15);border-radius:12px;padding:1.5rem 2rem;min-width:180px;}
+.contact-card-icon{font-size:1.5rem;margin-bottom:.5rem;}
+.contact-card-label{color:var(--muted);font-size:.75rem;margin-bottom:.3rem;}
+.contact-card-val{color:var(--cyan);font-size:.85rem;font-weight:600;word-break:break-all;}
+
+footer{background:var(--dark2);text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem;border-top:1px solid rgba(0,212,255,0.1);}
+footer span{color:var(--cyan);}
+
+/* typing cursor */
+.typed::after{content:'|';color:var(--cyan);animation:blink .7s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+@media(max-width:768px){
+  .hero-name{font-size:2.2rem;}
+  .about-grid,.edu-grid{grid-template-columns:1fr;}
+  .hex-frame{width:200px;height:200px;}
+  .hex-inner{width:165px;height:165px;font-size:3.5rem;}
+  #home{flex-direction:column;gap:2rem;padding-top:6rem;text-align:center;}
+  .hero-btns,.social-icons{justify-content:center;}
+  .timeline::before{display:none;}
+  .timeline-item{padding-left:0;}
+  .timeline-dot{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Portfolio<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-content">
+    <p class="hero-sub">Hello, It's Me</p>
+    <h1 class="hero-name">Osorio Soarez</h1>
+    <p class="hero-role">And I'm a <span class="typed" id="typed-text"></span></p>
+    <p class="hero-bio">A passionate AI researcher and Computer Scientist from Timor-Leste, currently pursuing a Master's degree at the University of Science and Technology of China (USTC). My research dives deep into Large Language Model (LLM) inference optimization, distributed AI systems, and cloud-based AI deployment — driven by a passion for making AI faster, smarter, and more efficient.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Contact Me</a>
+      <a href="#projects" class="btn-secondary">View Projects</a>
+    </div>
+    <div class="social-icons">
+      <a href="mailto:suarezoso27@gmail.com" title="Email">✉</a>
+      <a href="https://www.linkedin.com/in/osorio-soarez" title="LinkedIn">in</a>
+      <a href="https://github.com/SoarezTL" title="GitHub">&#60;/&#62;</a>
+      <a href="https://www.instagram.com/soarez_osorio" title="Instagram">ig</a>
+      <a href="https://www.facebook.com/OsorioNakSuarez" title="Facebook">fb</a>
+      <a href="#" title="WeChat">W</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hex-frame">
+      <div class="hex-bg"></div>
+      <div class="hex-border"></div>
+      <div class="hex-inner"><img src="https://i.postimg.cc/DwFCp429/profile-jpg.jpg" alt="Osorio Soarez"/></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About <span>Me</span></h2>
+  <div class="section-line"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am an AI-focused researcher with deep interests in Large Language Models, deep learning, and intelligent systems. Proficient in C, C++, Java, and Python, I build and study AI systems from the ground up — from neural network architectures to LLM inference pipelines.</p>
+      <p>My current research at USTC centers on optimizing cloud-based LLM deployment — exploring KV cache management, continuous batching, speculative decoding, and distributed scheduling to make AI inference faster and more efficient at scale.</p>
+      <p>Beyond academics, I served as Regional Coordinator of the Association of Timorese Students in China, and as a Youth Facilitator at Plan International — reflecting my commitment to community and leadership.</p>
+    </div>
+    <div class="about-info">
+      <div class="info-item"><span class="info-label">Name</span><span class="info-val">Osorio Soarez</span></div>
+      <div class="info-item"><span class="info-label">Nationality</span><span class="info-val">Timorese</span></div>
+      <div class="info-item"><span class="info-label">Email</span><span class="info-val">suarezoso27@gmail.com</span></div>
+      <div class="info-item"><span class="info-label">WeChat</span><span class="info-val">Soarezoso27</span></div>
+      <div class="info-item"><span class="info-label">Phone</span><span class="info-val">(+86) 13075567067</span></div>
+      <div class="info-item"><span class="info-label">Languages</span><span class="info-val">Tetun, English, Chinese, Portuguese, Indonesian</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <h2 class="section-title"><span>Education</span></h2>
+  <div class="section-line"></div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <span class="edu-badge">Current</span>
+      <div class="edu-degree">Master of Computer Science & Technology <span class="current-badge">2025–Present</span></div>
+      <div class="edu-school">University of Science and Technology of China (USTC)</div>
+      <div class="edu-period">Hefei, China</div>
+      <div class="edu-detail"><strong style="color:var(--cyan)">Research Direction:</strong> Optimization in Cloud-based LLM Deployment — focusing on inference efficiency, KV cache management, and distributed scheduling for large language models.</div>
+    </div>
+    <div class="edu-card">
+      <span class="edu-badge">Completed</span>
+      <div class="edu-degree">Bachelor of Computer Science</div>
+      <div class="edu-school">Hebei University of Technology</div>
+      <div class="edu-period">Sep 2021 – Jul 2025 · Tianjin, China</div>
+      <div class="edu-detail">Field: Computer Science & Technology · Final Grade: <strong style="color:#fff">83%</strong><br>Thesis: <em>"Real-time object detection for autonomous vehicles using deep learning"</em></div>
+    </div>
+    <div class="edu-card">
+      <span class="edu-badge">High School</span>
+      <div class="edu-degree">High School of Natural Science</div>
+      <div class="edu-school">Saint Petter High School</div>
+      <div class="edu-period">May 2015 – Nov 2017 · Dili, Timor-Leste</div>
+      <div class="edu-detail">Subjects: Chemistry, Biology, Mathematics, Physics, Geology, Multimedia & Technology</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title">My <span>Skills</span></h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-cat-title">Programming Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">AI & Research</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Deep Learning</span>
+        <span class="skill-tag">YOLO</span>
+        <span class="skill-tag">CNNs</span>
+        <span class="skill-tag">LLM Inference</span>
+        <span class="skill-tag">KV Cache</span>
+        <span class="skill-tag">Object Detection</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Development & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Django</span>
+        <span class="skill-tag">Android Dev</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">MS Office</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Languages Spoken</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Tetun (Native)</span>
+        <span class="skill-tag">English (C1)</span>
+        <span class="skill-tag">Chinese (B2)</span>
+        <span class="skill-tag">Indonesian (C1)</span>
+        <span class="skill-tag">Portuguese (B1)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title">My <span>Projects</span></h2>
+  <div class="section-line"></div>
+  <div class="proj-grid">
+    <div class="proj-card">
+      <div class="proj-icon">🗄️</div>
+      <div class="proj-period">Apr – Jun 2023</div>
+      <div class="proj-title">Software Engineering Data Management System</div>
+      <div class="proj-desc">Designed a full client-server data management system including ERD schema, UI/UX wireframes, and RESTful API architecture. Implemented frontend with React and backend with Python/Django.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Django</span><span class="proj-tag">React</span><span class="proj-tag">MySQL</span><span class="proj-tag">REST API</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-icon">🏫</div>
+      <div class="proj-period">Apr – Jun 2024</div>
+      <div class="proj-title">University Classroom Real-Time Information Platform</div>
+      <div class="proj-desc">A real-time university platform providing students and faculty with live classroom occupancy, scheduling, equipment status, course materials, and mobile notifications.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">Real-Time</span><span class="proj-tag">Mobile</span><span class="proj-tag">Notifications</span><span class="proj-tag">Scheduling</span>
+      </div>
+    </div>
+    <div class="proj-card">
+      <div class="proj-icon">🤖</div>
+      <div class="proj-period">Oct 2024 – Jan 2025</div>
+      <div class="proj-title">YOLO Object Detection for Autonomous Vehicles</div>
+      <div class="proj-desc">Applied the YOLO algorithm within a deep learning framework for real-time image object detection. Covered CNNs, data preparation, annotation, and model training for autonomous driving context.</div>
+      <div class="proj-tags">
+        <span class="proj-tag">YOLO</span><span class="proj-tag">Deep Learning</span><span class="proj-tag">CNN</span><span class="proj-tag">Python</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2 class="section-title">Work <span>Experience</span></h2>
+  <div class="section-line"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="tl-period">Nov 2020 – Aug 2022</div>
+        <div class="tl-role">Safety Officer & Interpreter</div>
+        <div class="tl-org">China Harbour Engineering Company – Tibar Bay Port Project, Dili, Timor-Leste</div>
+        <div class="tl-desc">Conducted safety inspections, audits, and training. Developed safety policies and procedures. Translated between Chinese and Tetun/English for project operations.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="tl-period">Aug 2018</div>
+        <div class="tl-role">Translator (Tetun ↔ English)</div>
+        <div class="tl-org">UNESCO in Timor-Leste – Two-Week Program, Dili</div>
+        <div class="tl-desc">Translated documents and reports for UNESCO's rural education program in Timor-Leste.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="tl-period">2017–2021</div>
+        <div class="tl-role">Laboratory Assistant</div>
+        <div class="tl-org">Saint Petter High School, Dili, Timor-Leste</div>
+        <div class="tl-desc">Organized lab experiments in Chemistry, Physics and Mathematics. Managed laboratory operations and conducted demonstrations for students.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="tl-period">2021–2025</div>
+        <div class="tl-role">Vice-Leader, Art & Culture Department</div>
+        <div class="tl-org">Hebei University of Technology, Tianjin, China</div>
+        <div class="tl-desc">Led international students in cultural activities. Organized the International Cultural Festival, managing logistics, scheduling, and program development.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="tl-period">Ongoing</div>
+        <div class="tl-role">Regional Coordinator</div>
+        <div class="tl-org">Association of Timorese Students in China</div>
+        <div class="tl-desc">Organized academic and cultural events for Timorese students in China. Coordinated activities on behalf of the Timorese Embassy in Beijing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <h2 class="section-title">Honours & <span>Awards</span></h2>
+  <div class="section-line"></div>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🎓</div>
+      <div class="award-year">2018 · Chinese Scholarship Council</div>
+      <div class="award-title">CSC Chinese Government Scholarship</div>
+      <div class="award-org">Full scholarship for Bachelor's Degree Study</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-year">2015 & 2016 · SESIM-UNESCO</div>
+      <div class="award-title">National Science Experiment Competition</div>
+      <div class="award-org">First-class winner for two consecutive years, Timor-Leste</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">⭐</div>
+      <div class="award-year">2023 · Hebei University of Technology</div>
+      <div class="award-title">Excellent Volunteer Award</div>
+      <div class="award-org">Outstanding Volunteer at 120th Anniversary Celebration</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">📜</div>
+      <div class="award-year">2019 · Tianjin University</div>
+      <div class="award-title">Chinese Language Award</div>
+      <div class="award-org">2nd Prize – Propaedeutic Education of Chinese</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌏</div>
+      <div class="award-year">2022 · Chinese Bridge</div>
+      <div class="award-title">Chinese Proficiency Competition</div>
+      <div class="award-org">Foreigners Online Dubbing Show – China</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🕊️</div>
+      <div class="award-year">2017 · UWC Singapore</div>
+      <div class="award-title">Initiative for Peace Conference</div>
+      <div class="award-org">Selected from 500 applicants – Dili, Timor-Leste</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages">
+  <h2 class="section-title">Language <span>Proficiency</span></h2>
+  <div class="section-line"></div>
+  <div class="lang-grid">
+    <div class="lang-card">
+      <div class="lang-name">Tetun</div>
+      <div class="lang-level">Native</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-name">Indonesian</div>
+      <div class="lang-level">C1–C2 Proficient</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:90%"></div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-name">English</div>
+      <div class="lang-level">B2–C1 Advanced</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:78%"></div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-name">Chinese</div>
+      <div class="lang-level">B2 Independent</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:65%"></div></div>
+    </div>
+    <div class="lang-card">
+      <div class="lang-name">Portuguese</div>
+      <div class="lang-level">B1 Independent</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:50%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Get In <span>Touch</span></h2>
+  <div class="section-line"></div>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem;">Feel free to reach out for collaboration, research, or opportunities.</p>
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-card-icon">✉️</div>
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-val">suarezoso27@gmail.com</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-label">WeChat</div>
+      <div class="contact-card-val">Soarezoso27</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">📱</div>
+      <div class="contact-card-label">Phone</div>
+      <div class="contact-card-val">(+86) 13075567067</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">🎓</div>
+      <div class="contact-card-label">University</div>
+      <div class="contact-card-val">USTC, Hefei, China</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">📸</div>
+      <div class="contact-card-label">Instagram</div>
+      <div class="contact-card-val">soarez_osorio</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">👤</div>
+      <div class="contact-card-label">Facebook</div>
+      <div class="contact-card-val">Osorio Nak Suarez</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Designed & Built with ❤️ by <span>Osorio Soarez</span> · Timor-Leste 🇹🇱</p>
+</footer>
+
+<script>
+const roles = ["Computer Scientist","LLM Researcher","Software Engineer","AI Enthusiast","Master's Student @ USTC"];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const w=roles[ri];
+  if(!del){
+    el.textContent=w.slice(0,ci+1);ci++;
+    if(ci===w.length){del=true;setTimeout(type,1800);return;}
+  } else {
+    el.textContent=w.slice(0,ci-1);ci--;
+    if(ci===0){del=false;ri=(ri+1)%roles.length;}
+  }
+  setTimeout(type,del?60:100);
+}
+type();
+
+// smooth active nav
+const sections=document.querySelectorAll('section');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});
+  links.forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--cyan)':'';
+  });
+});
+</script>
+</body>
+</html>
